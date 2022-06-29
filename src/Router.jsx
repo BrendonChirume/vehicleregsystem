@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import LogIn from "./pages/Login";
 import NewReg from "./pages/NewReg";
 import RregisteredVehicles from "./pages/RregisteredVehicles";
+import SearchPage from "./pages/SearchPage";
 import VehicleEdit from "./pages/VehicleEdit";
 
 export default function Router() {
@@ -20,7 +21,13 @@ export default function Router() {
       children: [
         {
           path: "main",
-          element: <Home />
+          element: <Home />,
+          children: [
+            {
+              path: "",
+              element: <SearchPage />
+            }
+          ]
         },
         {
           path: "new-registration",
@@ -28,10 +35,21 @@ export default function Router() {
         },
         {
           path: "registered-vehicles",
-          element: <RregisteredVehicles />
+          element: <RregisteredVehicles />,
+          children: [
+            {
+              path: ":id",
+              element: <RregisteredVehicles />
+            }
+          ]
+        },
+
+        {
+          path: "vehicle-edit/:id",
+          element: <VehicleEdit />
         },
         {
-          path: "vehicle-edit:id",
+          path: "vehicle-edit",
           element: <VehicleEdit />
         }
       ]

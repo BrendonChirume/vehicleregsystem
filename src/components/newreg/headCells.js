@@ -119,24 +119,9 @@ const headCells = [
     disablePadding: false,
     numeric: false
   },
-
-  {
-    id: "Vehicle",
-    label: "Vehicle",
-    minWidth: 100,
-    disablePadding: false,
-    numeric: false
-  },
   {
     id: "Vehicle Restrictions/Admin marks",
     label: "Vehicle Restrictions/Admin marks",
-    minWidth: 100,
-    disablePadding: false,
-    numeric: false
-  },
-  {
-    id: "minimum height  ",
-    label: "minimum height  ",
     minWidth: 100,
     disablePadding: false,
     numeric: false
@@ -204,15 +189,6 @@ const headCells = [
     disablePadding: false,
     numeric: false
   },
-
-  {
-    id: "Category",
-    label: "Category",
-    minWidth: 100,
-    disablePadding: false,
-    numeric: false
-  },
-
   {
     id: "Address",
     label: "Address",

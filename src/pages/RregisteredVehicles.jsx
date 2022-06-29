@@ -2,10 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
-import TablePagination from "@mui/material/TablePagination";
-import TableRow from "@mui/material/TableRow";
 // import Checkbox from "@mui/material/Checkbox";
 
 import Paper from "@mui/material/Paper";
@@ -13,6 +10,8 @@ import Paper from "@mui/material/Paper";
 import EnhancedTableToolbar from "../components/newreg/EnhancedTableToolbar";
 import EnhancedTableHead from "../components/newreg/EnhancedTableHead";
 import Row from "../components/newreg/Row";
+import { useNavigate, useParams } from "react-router-dom";
+import ViewVehicle from "./ViewVehicle";
 
 function createData(
   Vehicle_Reg_Number,
@@ -32,9 +31,7 @@ function createData(
   Country_of_import,
   Vehicle_Reg_Status,
   Date_of_Zim_Reg,
-  Vehicle,
   Vehicle_Restri,
-  Minimum_Height,
   Owner_Surname,
   Owner_Name,
   Owner_ID,
@@ -44,7 +41,6 @@ function createData(
   Date_Issued,
   Issuing_Office,
   Certificate_Number,
-  Category,
   Address,
   City_Town
 ) {
@@ -66,9 +62,7 @@ function createData(
     Country_of_import,
     Vehicle_Reg_Status,
     Date_of_Zim_Reg,
-    Vehicle,
     Vehicle_Restri,
-    Minimum_Height,
     Owner_Surname,
     Owner_Name,
     Owner_ID,
@@ -78,30 +72,384 @@ function createData(
     Date_Issued,
     Issuing_Office,
     Certificate_Number,
-    Category,
     Address,
     City_Town
   };
 }
 
 const rows = [
-  createData("ACC 0000", "ACC 0000", "5654", "N14HR", "N14RR", ""),
-  createData("ACC 0001", "ACC 0000", "5654", "N14HR", "N14RR", ""),
-  createData("ACC 0002", "ACC 0000", "5654", "N14HR", "N14RR", ""),
-  createData("ACC 0003", "ACC 0000", "5654", "N14HR", "N14RR", ""),
-  createData("ACC 0004", "ACC 0000", "5654", "N14HR", "N14RR", ""),
-  createData("ACC 0005", "ACC 0000", "5654", "N14HR", "N14RR", ""),
-  createData("ACC 0006", "ACC 0000", "5654", "N14HR", "N14RR", ""),
-  createData("ACC 0007", "ACC 0000", "5654", "N14HR", "N14RR", ""),
-  createData("ACC 0008", "ACC 0000", "5654", "N14HR", "N14RR", ""),
-  createData("ACC 0009", "ACC 0000", "5654", "N14HR", "N14RR", ""),
-  createData("ACC 00010", "ACC 0000", "5654", "N14HR", "N14RR", ""),
-  createData("ACC 00010", "ACC 0000", "5654", "N14HR", "N14RR", ""),
-  createData("ACC 00012", "ACC 0000", "5654", "N14HR", "N14RR", ""),
-  createData("ACC 00013", "ACC 0000", "5654", "N14HR", "N14RR", ""),
-  createData("ACC 00014", "ACC 0000", "5654", "N14HR", "N14RR", ""),
-  createData("ACC 00015", "ACC 0000", "5654", "N14HR", "N14RR", ""),
-  createData("ACC 00016", "ACC 0000", "5654", "N14HR", "N14RR", "")
+  createData(
+    "ACJ9475",
+    "ACJ9475",
+    "V0752772",
+    "SXN10001267135",
+    "3S7600394",
+    "Toyota",
+    "Nadia",
+    "grey",
+    "1-2300 KG net mass",
+    "petrol",
+    "stationwagon (Ranchwagon)",
+    "1665",
+    "0",
+    "1998",
+    "Japan",
+    "issues/change of ownership",
+    "01/03/2012",
+    "no restrictions",
+    "John",
+    "Doe",
+    "123456789",
+    "+263 77 211 8916",
+    "John",
+    "Doe",
+    "01/01/2020",
+    "123456789",
+    "C000863967",
+    "10 Griffin Terrace Highbury Road Tegela",
+    "Bulawayo"
+  ),
+  createData(
+    "ACJ9476",
+    "ACJ9475",
+    "V0752772",
+    "SXN10001267135",
+    "3S7600394",
+    "Toyota",
+    "Nadia",
+    "grey",
+    "1-2300 KG net mass",
+    "petrol",
+    "stationwagon (Ranchwagon)",
+    "1665",
+    "0",
+    "1998",
+    "Japan",
+    "issues/change of ownership",
+    "01/03/2012",
+    "no restrictions",
+    "John",
+    "Doe",
+    "123456789",
+    "+263 77 211 8916",
+    "John",
+    "Doe",
+    "01/01/2020",
+    "123456789",
+    "C000863967",
+    "10 Griffin Terrace Highbury Road Tegela",
+    "Bulawayo"
+  ),
+  createData(
+    "ACJ9477",
+    "ACJ9475",
+    "V0752772",
+    "SXN10001267135",
+    "3S7600394",
+    "Toyota",
+    "Nadia",
+    "grey",
+    "1-2300 KG net mass",
+    "petrol",
+    "stationwagon (Ranchwagon)",
+    "1665",
+    "0",
+    "1998",
+    "Japan",
+    "issues/change of ownership",
+    "01/03/2012",
+    "no restrictions",
+    "John",
+    "Doe",
+    "123456789",
+    "+263 77 211 8916",
+    "John",
+    "Doe",
+    "01/01/2020",
+    "123456789",
+    "C000863967",
+    "10 Griffin Terrace Highbury Road Tegela",
+    "Bulawayo"
+  ),
+  createData(
+    "ACJ9478",
+    "ACJ9475",
+    "V0752772",
+    "SXN10001267135",
+    "3S7600394",
+    "Toyota",
+    "Nadia",
+    "grey",
+    "1-2300 KG net mass",
+    "petrol",
+    "stationwagon (Ranchwagon)",
+    "1665",
+    "0",
+    "1998",
+    "Japan",
+    "issues/change of ownership",
+    "01/03/2012",
+    "no restrictions",
+    "John",
+    "Doe",
+    "123456789",
+    "+263 77 211 8916",
+    "John",
+    "Doe",
+    "01/01/2020",
+    "123456789",
+    "C000863967",
+    "10 Griffin Terrace Highbury Road Tegela",
+    "Bulawayo"
+  ),
+  createData(
+    "ACJ9479",
+    "ACJ9475",
+    "V0752772",
+    "SXN10001267135",
+    "3S7600394",
+    "Toyota",
+    "Nadia",
+    "grey",
+    "1-2300 KG net mass",
+    "petrol",
+    "stationwagon (Ranchwagon)",
+    "1665",
+    "0",
+    "1998",
+    "Japan",
+    "issues/change of ownership",
+    "01/03/2012",
+    "no restrictions",
+    "John",
+    "Doe",
+    "123456789",
+    "+263 77 211 8916",
+    "John",
+    "Doe",
+    "01/01/2020",
+    "123456789",
+    "C000863967",
+    "10 Griffin Terrace Highbury Road Tegela",
+    "Bulawayo"
+  ),
+  createData(
+    "ACJ9480",
+    "ACJ9475",
+    "V0752772",
+    "SXN10001267135",
+    "3S7600394",
+    "Toyota",
+    "Nadia",
+    "grey",
+    "1-2300 KG net mass",
+    "petrol",
+    "stationwagon (Ranchwagon)",
+    "1665",
+    "0",
+    "1998",
+    "Japan",
+    "issues/change of ownership",
+    "01/03/2012",
+    "no restrictions",
+    "John",
+    "Doe",
+    "123456789",
+    "+263 77 211 8916",
+    "John",
+    "Doe",
+    "01/01/2020",
+    "123456789",
+    "C000863967",
+    "10 Griffin Terrace Highbury Road Tegela",
+    "Bulawayo"
+  ),
+  createData(
+    "ACJ9481",
+    "ACJ9475",
+    "V0752772",
+    "SXN10001267135",
+    "3S7600394",
+    "Toyota",
+    "Nadia",
+    "grey",
+    "1-2300 KG net mass",
+    "petrol",
+    "stationwagon (Ranchwagon)",
+    "1665",
+    "0",
+    "1998",
+    "Japan",
+    "issues/change of ownership",
+    "01/03/2012",
+    "no restrictions",
+    "John",
+    "Doe",
+    "123456789",
+    "+263 77 211 8916",
+    "John",
+    "Doe",
+    "01/01/2020",
+    "123456789",
+    "C000863967",
+    "10 Griffin Terrace Highbury Road Tegela",
+    "Bulawayo"
+  ),
+  createData(
+    "ACJ9482",
+    "ACJ9475",
+    "V0752772",
+    "SXN10001267135",
+    "3S7600394",
+    "Toyota",
+    "Nadia",
+    "grey",
+    "1-2300 KG net mass",
+    "petrol",
+    "stationwagon (Ranchwagon)",
+    "1665",
+    "0",
+    "1998",
+    "Japan",
+    "issues/change of ownership",
+    "01/03/2012",
+    "no restrictions",
+    "John",
+    "Doe",
+    "123456789",
+    "+263 77 211 8916",
+    "John",
+    "Doe",
+    "01/01/2020",
+    "123456789",
+    "C000863967",
+    "10 Griffin Terrace Highbury Road Tegela",
+    "Bulawayo"
+  ),
+  createData(
+    "ACJ9483",
+    "ACJ9475",
+    "V0752772",
+    "SXN10001267135",
+    "3S7600394",
+    "Toyota",
+    "Nadia",
+    "grey",
+    "1-2300 KG net mass",
+    "petrol",
+    "stationwagon (Ranchwagon)",
+    "1665",
+    "0",
+    "1998",
+    "Japan",
+    "issues/change of ownership",
+    "01/03/2012",
+    "no restrictions",
+    "John",
+    "Doe",
+    "123456789",
+    "+263 77 211 8916",
+    "John",
+    "Doe",
+    "01/01/2020",
+    "123456789",
+    "C000863967",
+    "10 Griffin Terrace Highbury Road Tegela",
+    "Bulawayo"
+  ),
+  createData(
+    "ACJ9484",
+    "ACJ9475",
+    "V0752772",
+    "SXN10001267135",
+    "3S7600394",
+    "Toyota",
+    "Nadia",
+    "grey",
+    "1-2300 KG net mass",
+    "petrol",
+    "stationwagon (Ranchwagon)",
+    "1665",
+    "0",
+    "1998",
+    "Japan",
+    "issues/change of ownership",
+    "01/03/2012",
+    "no restrictions",
+    "John",
+    "Doe",
+    "123456789",
+    "+263 77 211 8916",
+    "John",
+    "Doe",
+    "01/01/2020",
+    "123456789",
+    "C000863967",
+    "10 Griffin Terrace Highbury Road Tegela",
+    "Bulawayo"
+  ),
+  createData(
+    "ACJ9485",
+    "ACJ9475",
+    "V0752772",
+    "SXN10001267135",
+    "3S7600394",
+    "Toyota",
+    "Nadia",
+    "grey",
+    "1-2300 KG net mass",
+    "petrol",
+    "stationwagon (Ranchwagon)",
+    "1665",
+    "0",
+    "1998",
+    "Japan",
+    "issues/change of ownership",
+    "01/03/2012",
+    "no restrictions",
+    "John",
+    "Doe",
+    "123456789",
+    "+263 77 211 8916",
+    "John",
+    "Doe",
+    "01/01/2020",
+    "123456789",
+    "C000863967",
+    "10 Griffin Terrace Highbury Road Tegela",
+    "Bulawayo"
+  ),
+  createData(
+    "ACJ9486",
+    "ACJ9475",
+    "V0752772",
+    "SXN10001267135",
+    "3S7600394",
+    "Toyota",
+    "Nadia",
+    "grey",
+    "1-2300 KG net mass",
+    "petrol",
+    "stationwagon (Ranchwagon)",
+    "1665",
+    "0",
+    "1998",
+    "Japan",
+    "issues/change of ownership",
+    "01/03/2012",
+    "no restrictions",
+    "John",
+    "Doe",
+    "123456789",
+    "+263 77 211 8916",
+    "John",
+    "Doe",
+    "01/01/2020",
+    "123456789",
+    "C000863967",
+    "10 Griffin Terrace Highbury Road Tegela",
+    "Bulawayo"
+  )
 ];
 
 function descendingComparator(a, b, orderBy) {
@@ -137,20 +485,15 @@ function stableSort(array, comparator) {
 export default function EnhancedTable() {
   const [order, setOrder] = React.useState("asc");
   const [orderBy, setOrderBy] = React.useState("calories");
-  const [selected, setSelected] = React.useState([]);
-  const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const navigate = useNavigate();
+  const { id } = useParams();
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);
   };
-
-  React.useEffect(() => {
-    setRowsPerPage(dense ? 5 : 10);
-  }, [setRowsPerPage, dense]);
 
   // const handleSelectAllClick = (event) => {
   //   if (event.target.checked) {
@@ -162,107 +505,51 @@ export default function EnhancedTable() {
   // };
 
   const handleClick = (event, name) => {
-    const selectedIndex = selected.indexOf(name);
-    let newSelected = [];
-
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1)
-      );
-    }
-
-    setSelected(newSelected);
-  };
-
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
+    return navigate(`./${name}`);
   };
 
   const handleChangeDense = (event) => {
     setDense(event.target.checked);
   };
 
-  const isSelected = (name) => selected.indexOf(name) !== -1;
-
-  // Avoid a layout jump when reaching the last page with empty rows.
-  const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-
-  return (
-    <Box sx={{ width: "100%" }}>
-      <Paper sx={{ width: "100%", borderRadius: 3 }}>
-        <EnhancedTableToolbar
-          handleChangeDense={handleChangeDense}
-          dense={dense}
-          numSelected={selected.length}
-        />
-        <TableContainer sx={{ minHeight: 380, mb: 0 }}>
-          <Table
-            sx={{ minWidth: 750 }}
-            aria-labelledby="tableTitle"
-            size={dense ? "small" : "medium"}
-          >
-            <EnhancedTableHead
-              numSelected={selected.length}
-              order={order}
-              orderBy={orderBy}
-              // onSelectAllClick={handleSelectAllClick}
-              onRequestSort={handleRequestSort}
-              rowCount={rows.length}
-            />
-            <TableBody>
-              {/* if you don't need to support IE10, you can replace the `stableSort` call with:
+  if (id) {
+    return <ViewVehicle id={id} />;
+  } else {
+    return (
+      <Box sx={{ width: "100%" }}>
+        <Paper sx={{ width: "100%", borderRadius: 3, overflow: "hidden" }}>
+          <EnhancedTableToolbar
+            handleChangeDense={handleChangeDense}
+            dense={dense}
+          />
+          <TableContainer sx={{ minHeight: 380, mb: 0 }}>
+            <Table
+              sx={{ minWidth: 750 }}
+              aria-labelledby="tableTitle"
+              size={dense ? "small" : "medium"}
+            >
+              <EnhancedTableHead
+                order={order}
+                orderBy={orderBy}
+                // onSelectAllClick={handleSelectAllClick}
+                onRequestSort={handleRequestSort}
+                rowCount={rows.length}
+              />
+              <TableBody>
+                {/* if you don't need to support IE10, you can replace the `stableSort` call with:
                  rows.slice().sort(getComparator(order, orderBy)) */}
-              {stableSort(rows, getComparator(order, orderBy))
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row, index) => {
-                  const isItemSelected = isSelected(row.Vehicle_Reg_Number);
-                  const labelId = `enhanced-table-checkbox-${index}`;
-
-                  return (
-                    <Row
-                      key={index}
-                      isItemSelected={isItemSelected}
-                      labelId={labelId}
-                      handleClick={handleClick}
-                      row={row}
-                    />
-                  );
-                })}
-              {emptyRows > 0 && (
-                <TableRow
-                  style={{
-                    height: (dense ? 33 : 53) * emptyRows
-                  }}
-                >
-                  <TableCell colSpan={6} />
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[dense ? 10 : 5, 25]}
-          component="div"
-          count={rows.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
-      </Paper>
-    </Box>
-  );
+                {stableSort(rows, getComparator(order, orderBy)).map(
+                  (row, index) => {
+                    return (
+                      <Row key={index} handleClick={handleClick} row={row} />
+                    );
+                  }
+                )}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Paper>
+      </Box>
+    );
+  }
 }

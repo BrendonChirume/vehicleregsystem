@@ -40,7 +40,11 @@ const Drawer = styled(MuiDrawer, {
   }
 }));
 
-const mdTheme = createTheme({});
+const mdTheme = createTheme({
+  typography: {
+    fontFamily: ["Poppins", "sans-serif"].join(",")
+  }
+});
 
 function DashboardContent() {
   const location = useLocation();

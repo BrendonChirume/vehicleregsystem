@@ -8,6 +8,11 @@ import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 
 import headCells from "./headCells";
+import { styled } from "@mui/material";
+
+const StyledCell = styled(TableCell)({
+  textTransform: "capitalize"
+});
 
 const EnhancedTableHead = (props) => {
   const {
@@ -37,7 +42,7 @@ const EnhancedTableHead = (props) => {
           />
         </TableCell> */}
         {headCells.map((headCell) => (
-          <TableCell
+          <StyledCell
             key={headCell.id}
             align={headCell.numeric ? "right" : "left"}
             padding={headCell.disablePadding ? "none" : "normal"}
@@ -56,7 +61,7 @@ const EnhancedTableHead = (props) => {
                 </Box>
               ) : null}
             </TableSortLabel>
-          </TableCell>
+          </StyledCell>
         ))}
       </TableRow>
     </TableHead>

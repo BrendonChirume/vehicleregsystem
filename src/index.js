@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Routes from "./Routes";
+import Router from "./Router";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { AuthProvider } from "./context/AuthProvider";
@@ -11,7 +11,7 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <AuthProvider>
-        <Routes />
+        <Router />
       </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>
