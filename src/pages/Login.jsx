@@ -131,7 +131,8 @@ export default function LogIn() {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: "url(https://source.unsplash.com/random)",
+            backgroundImage:
+              "url(https://storage.googleapis.com/wackk-images-production-4f204ab/W8RSsAyJ4TwqfEPSRoxu5k6N)",
             backgroundRepeat: "no-repeat",
             backgroundColor: (t) =>
               t.palette.mode === "light"
